@@ -9,6 +9,6 @@ public class TeacherRowMapper implements RowMapper<Teacher> {
 
   @Override
   public Teacher mapRow(ResultSet resultSet, int i) throws SQLException {
-    return new Teacher(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3));
+    throw new UnsupportedOperationException("To be implemented.");
   }
 }
