@@ -212,13 +212,15 @@ class StudentsJDBCRepository {
     }
   }
 
-  Optional<Double> getAverageAge() {
+  Optional<Double> getAverageAge(Date date) {
     try (Connection connection = dataSource.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet rs =
-            statement.executeQuery(
-                "SELECT SUM(TIMESTAMPDIFF(year,birthdate, current_date )) / "
-                    + "(SELECT COUNT(1) FROM students) AS avg FROM students")) {
+        PreparedStatement statement = connection.prepareStatement( "SELECT AVG(TIMESTAMPDIFF(year,birthdate, ? )) "
+                + "AS avg FROM students");
+        ) {
+
+      statement.setDate(1, date);
+
+      ResultSet rs = statement.executeQuery();
 
       if (rs.next()) {
         return Optional.of(rs.getDouble(1));
