@@ -49,7 +49,7 @@ class StudentsJDBCRepository {
     throw new UnsupportedOperationException("To be implemented.");
   }
 
-  Optional<Double> getAverageAge() {
+  Optional<Double> getAverageAge(Date date) {
     throw new UnsupportedOperationException("To be implemented.");
   }
 }

@@ -4,6 +4,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import base.DatabaseSetup;
+
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -134,10 +136,12 @@ class StudentsJDBCRepositoryTest {
   }
 
   @Test
-  @DisplayName("Correct average age should be returned")
+  @DisplayName("Correct average age at passed date should be returned")
   void testGetAverageAge() {
-    Optional<Double> age = studentsJDBCRepository.getAverageAge();
+    Date date = Date.valueOf("2018-06-01");
 
-    assertThat(age).contains(20.75);
+    Optional<Double> age = studentsJDBCRepository.getAverageAge(date);
+
+    assertThat(age).contains(19.75);
   }
 }
