@@ -1,7 +1,11 @@
 # Przygotowania
 
-Uruchom skrypt `create_database.sql` na użytkowniku **root** bazy danych.
-
+1. Skonfiguruj [połączenie](/Datasource.md) z bazą danych.
+2. Otwórz plik `create_database.sql` znajdujący się w katalogu `src/main/resources/db`.
+   Następnie klikając prawym klawiszem myszki otwórz menu kontekstowe i wybierz opcję
+   `Run 'create_database.sql'...`, a potem wybierz skonfigurowany datasource i naciśnij `ok`.
+   Po chwili powienieneś zobaczyć komunikat podobny do `Summary: X of Y statements executed in Z ms`.
+   
 # Struktura tabeli
 
 ![tables](assets/tables.png)
