@@ -1,10 +1,14 @@
 # Przygotowania
 
-1. Skonfiguruj [połączenie](/Datasource.md) z bazą danych.
-2. Otwórz plik `create_database.sql` znajdujący się w katalogu `src/main/resources/db`.
+1. Sklonuj ten projekt.
+2. Skonfiguruj [połączenie](/Datasource.md) z bazą danych.
+3. Otwórz plik `create_database.sql` znajdujący się w katalogu `src/main/resources/db`.
    Następnie klikając prawym klawiszem myszki otwórz menu kontekstowe i wybierz opcję
    `Run 'create_database.sql'...`, a potem wybierz skonfigurowany datasource i naciśnij `ok`.
    Po chwili powienieneś zobaczyć komunikat podobny do `Summary: X of Y statements executed in Z ms`.
+4. Otwórz plik `DatabaseSetupTest` znajdujący się w katalogu `src/text/java/connection`.
+   Następnie klikając prawym klawiszem myszki otwórz menu kontekstowe i wybierz opcję
+   `Run 'DatabaseSetupTest'`. Test powinien zakończyć się powodzeniem.
    
 # Struktura tabeli
 
@@ -81,21 +85,26 @@ school_class_id | student_id
    * Zaimplementuj `findStudentById` tak, by zwracało pusty `Optional` jeżeli student o danym **id** nie zostanie znaleziony.
   
    * Zaimplementuj metodę  `createStudent`, która będzie dodawać wiersz w bazie danych.
-   Pole `Id` przekazanego obiektu zawiera null. Metodę należy zaimplementować w ten sposób żeby uzyskać klucz główny z bazy.
-   Możesz do tego użyć metody `statement.getGeneratedKeys()`. Przekaż `Statement.RETURN_GENERATED_KEYS` jako trzeci parametr w `createStatement`.
-   Możesz wykonać akcje dodania wiersza i uzyskania klucza w obrębie jednej transakcji.
+     Pole `Id` przekazanego obiektu zawiera null. Metodę należy zaimplementować w ten sposób żeby uzyskać klucz główny z bazy.
+     Możesz do tego użyć metody `statement.getGeneratedKeys()`. Przekaż `Statement.RETURN_GENERATED_KEYS` jako trzeci parametr w `createStatement`.
+     Możesz wykonać akcje dodania wiersza i uzyskania klucza w obrębie jednej transakcji.
 
    * Zaimplementuj metodę `updateStudent`, która uaktulnia wiersz w bazie odpowiadający danemu obiektowi.
-   Sprawdź czy zapytanie rzeczywiście zmieniło jeden wiersz. Jeżeli nie to przerwij transakcję i rzuć wyjątek.
+     Sprawdź czy zapytanie rzeczywiście zmieniło jeden wiersz. Jeżeli nie to przerwij transakcję i rzuć wyjątek.
 
    * Zaimplementuj metodę `deleteStudent`, która usunie studenta uzywając id. Jeżeli zostanie usuniętych więcej studentów niż 1,
-    to wycofaj transakcję.
+     to wycofaj transakcję.
 
    * Zaimplementuj metodę `findStudentsByName` pozwalającą wyszukać studentów po począku imienia lub nazwiska.
 
    * Zaimplementuj metodę `findStudentsByTeacherId` pozwalającą znaleźć studentów po `id` uczącego ich nauczyciela.
 
-   * Zaimplementuj `getAverageAge` zwracającą obliczony średni wiek studentów.
+   * Zaimplementuj `getAverageAge` zwracającą obliczony średni wiek studentów w momencie daty podanej w parametrze.
+   
+   * Stwórz procedurę, która anonimizuje dane wszystkich uczniów zastępująć nazwiska, wten sposób,
+     że pozostawia tylko pierwszą literę nazwiska oraz dodaje po niej kropkę. Metoda powinna przyjąć listę id wierszy,
+     które powinny zostać w ten sposób przetworzone. Wywołaj tą procedurę poprzez JDBC. Kod procedury zapisz
+     w pliku `src/main/resources/db/anomize.sql`.
 
 2. Zaimplementuj metody w `TeachersJDBCRepository` tak by przychodziła testy w `TeachersJDBCRepositoryTest` używając `JdbcTemplate`.
 
@@ -105,6 +114,8 @@ school_class_id | student_id
 
    * Zaimplementuj metodę `findTeachersWhere` wyszukującą nauczycieli po imienu lub nazwisku lub nazwie prowadzonego przez niego przedmiotu.
    Wyszukiwanie powinno być *case-insensitive*, czyli wielkość znaków nie powinna mieć znaczenia.
+
+   * Zaimplementuj metodę `createTeacher`, pozwalającą na dodanie nowego nauczyciela.
 
    * Zaimplementuj metodę `batchCreateTeachers`, pozwalającą na zbiorcze dodanie nowych nauczycieli.
 
