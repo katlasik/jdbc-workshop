@@ -5,6 +5,7 @@ USE mysql;
 CREATE DATABASE school DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 CREATE USER 'school_user'@'%' IDENTIFIED BY 'pass';
 GRANT ALL ON school.* TO 'school_user'@'%';
+GRANT SUPER ON *.* TO 'school_user'@'%';
 FLUSH PRIVILEGES;
 
 CREATE TABLE school.students (
@@ -36,4 +37,6 @@ CREATE TABLE school.school_class_students (
     FOREIGN KEY (school_class_id) REFERENCES school.school_classes(id) ON DELETE RESTRICT,
     FOREIGN KEY (student_id) REFERENCES school.students(id) ON DELETE RESTRICT
 );
+
+SOURCE "anomize.sql";
 

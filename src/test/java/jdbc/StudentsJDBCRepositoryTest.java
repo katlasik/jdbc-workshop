@@ -144,4 +144,14 @@ class StudentsJDBCRepositoryTest {
 
     assertThat(age).contains(19.75);
   }
+
+  @Test
+  @DisplayName("Animization should be correct")
+  void testAnomize() {
+    studentsJDBCRepository.anomize(1L);
+
+    Optional<String> result = studentsJDBCRepository.findStudentById(1L).map(Student::getLastName);
+
+    assertThat(result).contains("K.");
+  }
 }

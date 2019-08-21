@@ -24,22 +24,38 @@ public class TeachersJDBCRepository {
     namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
   }
 
+  /**
+   * Zaimplementuj `findTeacherById` wzracający obiekt `Teacher` po `id.
+   */
   public Optional<Teacher> findTeacherById(Long id) {
     throw new UnsupportedOperationException("To be implemented.");
   }
 
+  /**
+   * Zaimplementuj `findAllTeacher` zwracający wszystkich nauczycieli.
+   */
   public List<Teacher> findAllTeachers() {
     throw new UnsupportedOperationException("To be implemented.");
   }
 
+  /**
+   * Zaimplementuj metodę `findTeachersWhere` wyszukującą nauczycieli po imienu lub nazwisku lub nazwie prowadzonego przez niego przedmiotu.
+   * Wyszukiwanie powinno być *case-insensitive*, czyli wielkość znaków nie powinna mieć znaczenia.
+   */
   public List<Teacher> findTeachersWhere(String query) {
     throw new UnsupportedOperationException("To be implemented.");
   }
 
+  /**
+   * Zaimplementuj metodę `createTeacher`, pozwalającą na dodanie nowego nauczyciela.
+   */
   public Teacher createTeacher(Teacher teacher) {
     throw new UnsupportedOperationException("To be implemented.");
   }
 
+  /**
+   * Zaimplementuj metodę `batchCreateTeachers`, pozwalającą na zbiorcze dodanie nowych nauczycieli.
+   */
   public int batchCreateTeachers(List<Teacher> teachers) {
     throw new UnsupportedOperationException("To be implemented.");
   }
