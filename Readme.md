@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/katlasik/jdbc-workshop.svg?style=svg)](https://circleci.com/gh/katlasik/jdbc-workshop)
+
 # Przygotowania
 
 1. Sklonuj ten projekt.
@@ -6,7 +8,7 @@
    Następnie klikając prawym klawiszem myszki otwórz menu kontekstowe i wybierz opcję
    `Run 'create_database.sql'...`, a potem wybierz skonfigurowany datasource i naciśnij `ok`.
    Po chwili powienieneś zobaczyć komunikat podobny do `Summary: X of Y statements executed in Z ms`.
-4. Otwórz plik `DatabaseSetupTest` znajdujący się w katalogu `src/text/java/connection`.
+4. Otwórz plik `DatabaseSetupTest` znajdujący się w katalogu `src/test/java/connection`.
    Następnie klikając prawym klawiszem myszki otwórz menu kontekstowe i wybierz opcję
    `Run 'DatabaseSetupTest'`. Test powinien zakończyć się powodzeniem.
    
@@ -33,7 +35,7 @@ id | first_name | last_name
 ---|------------|--------------
 1  | Damian     | Lewandowski
 2  | Artur      | Woźniak
-3  | Artur   |    Wójcik
+3  | Artur      | Wójcik
 
 <br/>
 

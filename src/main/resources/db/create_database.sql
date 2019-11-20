@@ -38,5 +38,3 @@ CREATE TABLE school.school_class_students (
     FOREIGN KEY (student_id) REFERENCES school.students(id) ON DELETE RESTRICT
 );
 
-SOURCE "anomize.sql";
-
