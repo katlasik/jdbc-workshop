@@ -1,0 +1,30 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: maven
+      - image: mysql
+        command: [--default-authentication-plugin=mysql_native_password]
+        environment:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+    steps:
+      - checkout
+      - run: |
+          apt-get update && apt-get install -qq  lsb-release default-mysql-client
+          mysql -h 0.0.0.0 -u root -e 'source src/main/resources/db/create_database.sql'
+          mysql -h 0.0.0.0 -u root -e 'source src/main/resources/db/anomize.sql'
+      - restore_cache:
+          key: java-workshop-{{ checksum "pom.xml" }}
+      - run: mvn dependency:go-offline
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: java-workshop-{{ checksum "pom.xml" }}
+      - run: |
+          if [ "$CIRCLE_BRANCH" = "master" ]; then
+              mvn test -Dtest=DatabaseSetupTest
+          fi
+      - run: |
+          if [ "$CIRCLE_BRANCH" = "solutions" ]; then
+              mvn test
+          fi

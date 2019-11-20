@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/katlasik/jdbc-workshop.svg?style=svg)](https://circleci.com/gh/katlasik/jdbc-workshop)
+
 # Przygotowania
 
 1. Sklonuj ten projekt.
