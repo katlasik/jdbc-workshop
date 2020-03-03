@@ -17,7 +17,7 @@
 
 Jeżeli `Test Connection` zwrócic błąd, to spróbuj w polu `URL` dodaj parametry:
 `?useTimezone=true&serverTimezone=UTC`. Cały URL będzie wyglądał podobnie do 
-`jdbc:mysql://localhost:3306?useTimezone=true&serverTImezone=UTC`.
+`jdbc:mysql://localhost:3306?useTimezone=true&serverTimezone=UTC`.
   
 Następnie w razie niepowodzenia spróbuj wprowadzić jako `Host` *0.0.0.0* zamiast *localhost*.
 Jeżeli nawet to nie pomaga, to spróbuj zainstalować jeszcze raz bazę danych.
