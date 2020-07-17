@@ -1,7 +1,8 @@
+USE mysql;
+
 DROP DATABASE IF EXISTS school;
 DROP USER IF EXISTS school_user;
 
-USE mysql;
 CREATE DATABASE school DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 CREATE USER 'school_user'@'%' IDENTIFIED BY 'pass';
 GRANT ALL ON school.* TO 'school_user'@'%';
@@ -38,3 +39,24 @@ CREATE TABLE school.school_class_students (
     FOREIGN KEY (student_id) REFERENCES school.students(id) ON DELETE RESTRICT
 );
 
+DROP DATABASE IF EXISTS secret;
+CREATE DATABASE secret DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+GRANT ALL ON secret.* TO 'school_user'@'%';
+GRANT SUPER ON *.* TO 'school_user'@'%';
+FLUSH PRIVILEGES;
+
+DROP DATABASE IF EXISTS secret;
+CREATE DATABASE secret DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+GRANT ALL ON secret.* TO 'school_user'@'%';
+GRANT SUPER ON *.* TO 'school_user'@'%';
+FLUSH PRIVILEGES;
+
+CREATE TABLE secret.users(
+    id INT PRIMARY KEY,
+    login VARCHAR(200),
+    password VARCHAR(200)
+);
+
+INSERT INTO secret.users(id,login,secret.users.password) VALUES(1, 'admin', 's3cr3t');
