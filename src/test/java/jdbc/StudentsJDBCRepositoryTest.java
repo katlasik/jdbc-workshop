@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import jdbc.exception.RepositoryException;
 import jdbc.model.Student;
+import org.assertj.core.data.Percentage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -142,7 +143,7 @@ class StudentsJDBCRepositoryTest {
 
     Optional<Double> age = studentsJDBCRepository.getAverageAge(date);
 
-    assertThat(age).contains(19.75);
+    assertThat(age).hasValueSatisfying(d -> assertThat(d).isCloseTo(20, Percentage.withPercentage(10)));
   }
 
   @Test
